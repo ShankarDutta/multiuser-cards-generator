@@ -1,0 +1,91 @@
+"use client";
+
+import { InputValidation, InputValidationType } from "@/lib/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { InfoIcon, Loader } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { Button } from "../shadcnui/button";
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormMessage,
+} from "../shadcnui/form";
+import { Input } from "../shadcnui/input";
+const GetInput = () => {
+	const { push, replace } = useRouter();
+
+	useEffect(() => {
+		if (window.location.pathname === "/[num]") {
+			replace("/");
+		} else {
+			push("/");
+		}
+	}, [push, replace]);
+
+	const rhform = useForm<InputValidationType>({
+		resolver: zodResolver(InputValidation),
+		defaultValues: {
+			num: 0,
+		},
+	});
+
+	const OnSubmit = async ({ num }: InputValidationType) => {
+		push(`/${num}`);
+
+		await new Promise((resolve) => {
+			setTimeout(() => {
+				resolve("");
+			}, 3000);
+		});
+	};
+
+	return (
+		<>
+			<Form {...rhform}>
+				<form
+					onSubmit={rhform.handleSubmit(OnSubmit)}
+					className="gap-2 space-y-2 md:flex md:space-y-0">
+					<FormField
+						control={rhform.control}
+						name="num"
+						render={({ field }) => (
+							<FormItem>
+								<FormControl>
+									<Input
+										placeholder="Enter the number"
+										{...field}
+									/>
+								</FormControl>
+
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<Button
+						type="submit"
+						className="bg-blue-500 text-white hover:cursor-pointer hover:bg-blue-600"
+						disabled={rhform.formState.isSubmitting}>
+						{rhform.formState.isSubmitting ? (
+							<>
+								<Loader className="mr-2 animate-spin" />
+								Submitting
+							</>
+						) : (
+							<>
+								<InfoIcon />
+								Submit
+							</>
+						)}
+					</Button>
+				</form>
+			</Form>
+		</>
+	);
+};
+
+export default GetInput;
