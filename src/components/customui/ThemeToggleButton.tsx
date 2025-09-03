@@ -1,27 +1,25 @@
 "use client";
 
-import { MoonIcon, Sun } from "lucide-react";
+import { MoonStarIcon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Button } from "../shadcnui/button";
 
 const ThemeToggleButton = () => {
 	const { theme, setTheme } = useTheme();
 
 	return (
-		<Button
-			variant={"secondary"}
+		<button
 			onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-			className="flex cursor-pointer items-center shadow">
+			className="mt-0.5 flex cursor-pointer items-center">
 			<Sun
-				size={28}
+				size={22}
 				className="-rotate-90 text-blue-500 opacity-100 transition-all duration-300 dark:rotate-0 dark:opacity-0"
 			/>
 
-			<MoonIcon
-				size={28}
+			<MoonStarIcon
+				size={22}
 				className="absolute -rotate-90 text-fuchsia-500 opacity-0 transition-all duration-300 dark:rotate-0 dark:opacity-100"
 			/>
-		</Button>
+		</button>
 	);
 };
 

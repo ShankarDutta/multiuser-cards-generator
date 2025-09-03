@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer/Footer";
 import NavBar from "@/components/Header/NavBar";
 import ThemeProvider from "@/components/Providers/ThemeProvider";
 import { RootLayoutProps } from "@/lib/types";
@@ -17,6 +18,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
 					<main className="container mx-auto px-6 py-3">
 						{children}
 					</main>
+					<Footer />
 				</ThemeProvider>
 			</body>
 		</html>
