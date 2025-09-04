@@ -1,5 +1,5 @@
 {
-	"name": "nextjs-starter-template",
+	"name": "multiuser-cards-generator",
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
@@ -48,8 +48,5 @@
 		"@tailwindcss/oxide",
 		"sharp",
 		"unrs-resolver"
-	],
-	"author": "Saikat Sardar",
-	"license": "MIT",
-	"homepage": "https://github.com/MrSaikatS/nextjs-starter-template"
+	]
 }
