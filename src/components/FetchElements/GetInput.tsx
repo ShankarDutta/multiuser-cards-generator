@@ -3,7 +3,7 @@
 import { InputValidation, InputValidationType } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InfoIcon, Loader } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../shadcnui/button";
@@ -17,14 +17,17 @@ import {
 import { Input } from "../shadcnui/input";
 const GetInput = () => {
 	const { push, replace } = useRouter();
+	const pathname = usePathname();
 
 	useEffect(() => {
-		if (window.location.pathname === "/[num]") {
-			replace("/");
+		if (pathname === "/3") {
+			replace("/"); // special case: replace
+		} else if (pathname !== "/3") {
+			push(pathname);
 		} else {
-			push("/");
+			push("/"); // all other cases
 		}
-	}, [push, replace]);
+	}, [pathname, replace, push]);
 
 	const rhform = useForm<InputValidationType>({
 		resolver: zodResolver(InputValidation),
