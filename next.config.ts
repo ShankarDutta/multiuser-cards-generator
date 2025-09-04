@@ -6,9 +6,12 @@ const nextConfig: NextConfig = {
 			{
 				protocol: "https",
 				hostname: "randomuser.me",
-				pathname: "/api/portraits/**",
+				pathname: "/**",
 			},
 		],
+	},
+	env: {
+		RANDOMUSER_API: process.env.NEXT_PUBLIC_RANDOMUSER_API,
 	},
 };
 
