@@ -10,9 +10,6 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
-	env: {
-		RANDOMUSER_API: process.env.NEXT_PUBLIC_RANDOMUSER_API,
-	},
 };
 
 export default nextConfig;

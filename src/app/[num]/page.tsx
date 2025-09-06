@@ -1,11 +1,11 @@
 import CardSkeleton from "@/components/FetchElements/CardSkeleton";
 import DynamicSec from "@/components/FetchElements/DynamicSec";
-import fetchdata from "@/lib/FetchData";
+import fetchData from "@/lib/FetchData";
 import { Suspense } from "react";
 
 const page = async ({ params }: { params: Promise<{ num: string }> }) => {
 	const { num } = await params;
-	const UserData = await fetchdata(parseInt(num));
+	const UserData = await fetchData(parseInt(num));
 
 	return (
 		<>

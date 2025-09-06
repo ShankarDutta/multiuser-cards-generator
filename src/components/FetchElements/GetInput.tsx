@@ -29,31 +29,25 @@ const GetInput = () => {
 		}
 	}, [pathname, replace, push]);
 
-	const rhform = useForm<InputValidationType>({
+	const rhForm = useForm<InputValidationType>({
 		resolver: zodResolver(InputValidation),
 		defaultValues: {
 			num: 0,
 		},
 	});
 
-	const OnSubmit = async ({ num }: InputValidationType) => {
+	const onSubmit = async ({ num }: InputValidationType) => {
 		push(`/${num}`);
-
-		await new Promise((resolve) => {
-			setTimeout(() => {
-				resolve("");
-			}, 3000);
-		});
 	};
 
 	return (
 		<>
-			<Form {...rhform}>
+			<Form {...rhForm}>
 				<form
-					onSubmit={rhform.handleSubmit(OnSubmit)}
+					onSubmit={rhForm.handleSubmit(onSubmit)}
 					className="gap-2 space-y-2 md:flex md:space-y-0">
 					<FormField
-						control={rhform.control}
+						control={rhForm.control}
 						name="num"
 						render={({ field }) => (
 							<FormItem>
@@ -72,8 +66,11 @@ const GetInput = () => {
 					<Button
 						type="submit"
 						className="bg-blue-500 text-white hover:cursor-pointer hover:bg-blue-600"
-						disabled={rhform.formState.isSubmitting}>
-						{rhform.formState.isSubmitting ? (
+						disabled={
+							rhForm.formState.isSubmitting ||
+							!rhForm.formState.isValid
+						}>
+						{rhForm.formState.isSubmitting ? (
 							<>
 								<Loader className="mr-2 animate-spin" />
 								Submitting

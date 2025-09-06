@@ -1,4 +1,4 @@
-import fetchdata from "@/lib/FetchData";
+import fetchData from "@/lib/FetchData";
 import UserCard from "./UserCard";
 
 interface cardprops {
@@ -6,20 +6,19 @@ interface cardprops {
 }
 
 const DynamicSec = async ({ id }: cardprops) => {
-	const UserData = await fetchdata(parseInt(id.num));
+	const userData = await fetchData(parseInt(id.num));
+
 	return (
-		<>
-			<section className="grid grid-cols-1 place-items-center gap-4 py-6 lg:grid-cols-3">
-				{UserData.map((result) => {
-					return (
-						<UserCard
-							key={result.email}
-							info={result}
-						/>
-					);
-				})}
-			</section>
-		</>
+		<section className="grid grid-cols-1 place-items-center gap-4 py-6 lg:grid-cols-3">
+			{userData.map((result) => {
+				return (
+					<UserCard
+						key={result.email}
+						info={result}
+					/>
+				);
+			})}
+		</section>
 	);
 };
 

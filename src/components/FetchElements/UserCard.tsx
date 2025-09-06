@@ -25,7 +25,7 @@ const UserCard = ({ info }: CardPropsType) => {
 					className="h-[100px] w-[100px] rounded-full p-1 ring-2 ring-blue-400"
 				/>
 				<div className="text-center text-2xl font-semibold">
-					{info.name.title} {info.name.first} {info.name.last}
+					{info.name.first}
 				</div>
 			</div>
 

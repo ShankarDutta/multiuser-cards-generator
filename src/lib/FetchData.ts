@@ -1,11 +1,10 @@
 import ky from "ky";
+import env from "./env";
 import { UserDetailResultsType } from "./types";
-const API_URL =
-	process.env.NEXT_PUBLIC_RANDOMUSER_API || "https://randomuser.me/api/";
 
-const fetchdata = async (num?: number) => {
+const fetchData = async (num?: number) => {
 	const { results } = await ky
-		.get(API_URL, {
+		.get(env.RANDOM_USER_API, {
 			searchParams: {
 				noinfo: " ",
 				results: num || 3,
@@ -15,4 +14,4 @@ const fetchdata = async (num?: number) => {
 	return results;
 };
 
-export default fetchdata;
+export default fetchData;
